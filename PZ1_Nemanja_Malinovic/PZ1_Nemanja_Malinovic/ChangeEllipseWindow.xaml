@@ -1,0 +1,24 @@
+﻿<Window x:Class="PZ1_Nemanja_Malinovic.ChangeEllipseWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PZ1_Nemanja_Malinovic"
+        mc:Ignorable="d"
+        Title="ChangeEllipseWindow" Height="300" Width="450"
+        Background="{DynamicResource BlueGradient}">
+    <Window.Resources>
+        <LinearGradientBrush x:Key="BlueGradient" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#CCCCCC" Offset="0"/>
+            <GradientStop Color="#FF007AFF" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Resources>
+
+    <Grid>
+        <Label x:Name="label_Thickness" Content="Contour Thickness:" HorizontalAlignment="Left" Margin="19,23,0,0" VerticalAlignment="Top" Height="33" Width="119" RenderTransformOrigin="0.492,0.518"/>
+        <TextBox x:Name="tb_Thickness" HorizontalAlignment="Left" Height="33" Margin="138,23,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="117"/>
+        <Button x:Name="button_EllipseColor" Content="Select Ellipse color" HorizontalAlignment="Left" Margin="138,96,0,0" VerticalAlignment="Top" Width="117" Height="35" Click="Button_Click"/>
+        <Button x:Name="button_ChangeEllipse" Content="Change Ellipse" HorizontalAlignment="Left" Margin="80,175,0,0" VerticalAlignment="Top" Width="284" Height="47" Click="button_ChangeEllipse_Click"/>
+
+    </Grid>
+</Window>
