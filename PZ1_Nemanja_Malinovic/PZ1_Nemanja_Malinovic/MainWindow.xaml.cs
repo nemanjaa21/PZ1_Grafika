@@ -144,6 +144,8 @@ namespace PZ1_Nemanja_Malinovic
                 }
             }
 
+          
+
             FindLines(lines, entityIds);
         }
 
@@ -355,16 +357,16 @@ namespace PZ1_Nemanja_Malinovic
             }
         }
 
-        List<LineEntity> lineEntities = new List<LineEntity>();
-        private void Vod_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
+        //List<LineEntity> lineEntities = new List<LineEntity>();
+        //private void Vod_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        //{
 
-            string[] deloviToolTipa = ((Path)sender).ToolTip.ToString().Split(' ');
-            string id = deloviToolTipa[1];
-            LineEntity trenutniVod = lineEntities.Find(v => v.Id == long.Parse(id));
-            ((Ellipse)canvas.FindName("e" + trenutniVod.FirstEnd.ToString())).Fill = System.Windows.Media.Brushes.Red;
-            ((Ellipse)canvas.FindName("e" + trenutniVod.SecondEnd.ToString())).Fill = System.Windows.Media.Brushes.Red;
-        }
+        //    string[] deloviToolTipa = ((Path)sender).ToolTip.ToString().Split(' ');
+        //    string id = deloviToolTipa[1];
+        //    LineEntity trenutniVod = lineEntities.Find(v => v.Id == long.Parse(id));
+        //    ((Ellipse)canvas.FindName("e" + trenutniVod.FirstEnd.ToString())).Fill = System.Windows.Media.Brushes.Red;
+        //    ((Ellipse)canvas.FindName("e" + trenutniVod.SecondEnd.ToString())).Fill = System.Windows.Media.Brushes.Red;
+        //}
 
         public void EllipseShape_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
