@@ -107,6 +107,7 @@ namespace PZ1_Nemanja_Malinovic
 
         private void CalculateCoordination()
         {
+            //objects are being displayed on a screen or a map and need to be scaled so that they fit within a certain area.
             xMin = Math.Min(Math.Min(substations.Values.Min((item) => item.X), nodes.Values.Min((item) => item.X)), switches.Values.Min((item) => item.X)) - 0.01;
             xMax = Math.Max(Math.Max(substations.Values.Max((item) => item.X), nodes.Values.Max((item) => item.X)), switches.Values.Max((item) => item.X)) + 0.01;
             X = (xMax - xMin) / 300;
@@ -237,10 +238,18 @@ namespace PZ1_Nemanja_Malinovic
             myDoubleAnimation.From = 4;
             myDoubleAnimation.To = 16;
             myDoubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(1));
-            ellipse1.BeginAnimation(Ellipse.WidthProperty, myDoubleAnimation);
-            ellipse1.BeginAnimation(Ellipse.HeightProperty, myDoubleAnimation);
-            ellipse2.BeginAnimation(Ellipse.WidthProperty, myDoubleAnimation);
-            ellipse2.BeginAnimation(Ellipse.HeightProperty, myDoubleAnimation);
+
+            if (ellipse1 != null)
+            {
+                ellipse1.BeginAnimation(Ellipse.WidthProperty, myDoubleAnimation);
+                ellipse1.BeginAnimation(Ellipse.HeightProperty, myDoubleAnimation);
+            }
+            if (ellipse2 != null)
+            {
+                ellipse2.BeginAnimation(Ellipse.WidthProperty, myDoubleAnimation);
+                ellipse2.BeginAnimation(Ellipse.HeightProperty, myDoubleAnimation);
+            }
+            
 
 
             //ColorAnimation myColorAnimation = new ColorAnimation();
@@ -357,17 +366,6 @@ namespace PZ1_Nemanja_Malinovic
             }
         }
 
-        //List<LineEntity> lineEntities = new List<LineEntity>();
-        //private void Vod_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        //{
-
-        //    string[] deloviToolTipa = ((Path)sender).ToolTip.ToString().Split(' ');
-        //    string id = deloviToolTipa[1];
-        //    LineEntity trenutniVod = lineEntities.Find(v => v.Id == long.Parse(id));
-        //    ((Ellipse)canvas.FindName("e" + trenutniVod.FirstEnd.ToString())).Fill = System.Windows.Media.Brushes.Red;
-        //    ((Ellipse)canvas.FindName("e" + trenutniVod.SecondEnd.ToString())).Fill = System.Windows.Media.Brushes.Red;
-        //}
-
         public void EllipseShape_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
            //Izmena elipse
@@ -436,25 +434,27 @@ namespace PZ1_Nemanja_Malinovic
 
         private void mouseRightButtonDown_Canvas(object sender, MouseButtonEventArgs e)
         {
+            //iscrtavanje oblika
             System.Windows.Point point = e.GetPosition((IInputElement)sender);
             if ((bool)Ellipse_RadioButton.IsChecked)
             {
                 DrawEllipseWindow drawElipseWindow = new DrawEllipseWindow(point, this);
-                drawElipseWindow.Show();
+                drawElipseWindow.Show(); //otvara se prozor za elipse
             }
             else if ((bool)Polygon_RadioButton.IsChecked)
             {
-                PointsList.Add(point);
-            }
+                PointsList.Add(point); // samo se tacke dodaju za poligon kada je RIGHT button down
+            } 
             else if ((bool)Text_RadioButton.IsChecked)
             {
                 TextWindow textWindow = new TextWindow(point, this);
-                textWindow.Show();
+                textWindow.Show(); // otvara se prozor za tekst
             }
         }
 
         private void mouseLeftButtonDown_Canvas(object sender, MouseButtonEventArgs e)
         {
+            //otvara se prozor za poligon kada je LEFT DOWN
             System.Windows.Point point = e.GetPosition((IInputElement)sender);
             if ((bool)Polygon_RadioButton.IsChecked)
             {
@@ -466,7 +466,7 @@ namespace PZ1_Nemanja_Malinovic
                 }
                 else
                 {
-                    System.Windows.MessageBox.Show("You have to choose at least 3 points for polygon!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    System.Windows.MessageBox.Show("Morate odabrati minimum 3 tacke za poligon!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 }
 
